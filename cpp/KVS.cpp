@@ -1,10 +1,3 @@
-/*
- * KVS.cpp
- *
- *  Created on: 13 Feb 2019
- *      Author: hansen
- */
-
 #include "KVS.h"
 
 #define KVS_KEY_TERMINATOR    '='
