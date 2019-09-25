@@ -43,12 +43,12 @@ If the value is a structure **[** it will be terminated with a **]**. This will 
 
 The only other two exceptions would be if the structure contains no key-value pairs (an empty structure), or if another sub-structure also terminated. Then the structure terminating character **]** would directly follow the structure starting character **[** or the structure ending character, like so: **[]** or **]]**
 ## Binary Data
-Binary data can be inserted into the value as a Base64 encoded filename safe RFC 4648 string.
+Binary data can be inserted into the value as a Base64 encoded filename safe RFC 4648 string with **no** padding.
 # Example
 ## Pretty
-Also note that whitespace (space, tab, \n or \r) is allowed before and after the structure starting **[** and structure terminating **]** characters, as well as before or after keys. This allows for a developer to write out KVS strings in a human readable way, like so:
+Also note that whitespace (space, tab, \n or \r) is allowed before and after the structure starting **[** and structure terminating **]** characters, as well as before or after keys. This allows for a developer to write out KVS strings in a human friendly readable way, like so:
 ```
-name ~this is garbage=Peter;
+name =Peter;
 surname =Woods;
 bio =I am a very sophisticated person that loves to hike, swim, and ride bike in the forests. My favourite  lines of code is:
 	for(int i=0;;i<10;;i++)
@@ -81,37 +81,18 @@ car
 pets
 [
 	[
-		=name;
-		=type;
-		=breed;
-		=size;
-		=weight;
+		name=fluffy;
+		type=cat;
+		breed=housecat;
+		size=small;
+		weight=2kg;
 	]
 	[
-		=fluffy;
-		=cat;
-		=housecat;
-		=small;
-		=2kg;
-	]
-	[
-		=skittles;
-		=cat;
-		=housecat;
-		=small;
-		=2kg;
-	]
-	[
-		=bambi;
-		=dog;
-		=;
-		=medium;
-		=2kg;
-	]
-	[
-		=bobo;
-		=hamster;
-		=dwarf;
+		name=skittles;
+		type=cat;
+		breed=housecat;
+		sute=small;
+		weight=2kg;
 	]
 ]
 ```
