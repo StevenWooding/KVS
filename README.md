@@ -11,11 +11,11 @@ This also means that a sub KVS string can be injected into any other KVS string 
 The KVS syntax is a multi dimensional structure that contains a list of key-value pairs. With some values having the ability to be a "**Structure**" (or an Object as know in JSON) and act as another list of key-value pairs. Where the key is simply a name for the value. The syntax is signature based and **not** length based. Thus values and keys would terminate at a specific character and not at a specific length. This would make it a lot easier to parse and enable a low memory footprint for use on very primitive and low end devices. This will also make it easier to inject data in the middle of an already existing encoded string, without the need to go back and modify length values of higher level structures.
 
 The point of the KVS syntax is to act as a generic data carrier between multiple languages and platforms. It can also be stored in a file or a database. The initial languages that would need implementation for the syntax is:
-- PHP
-- Java
-- C
-- JavaScript
-- Python
+- Java (Very Complete - Recommended Reference)
+- PHP (Complete)
+- JavaScript (Complete
+- C (Incomplete)
+- Python (Incomplete)
 
 The language specific implementation requires the use of native structures inside the language (PHP arrays, Java LinkedHashMaps, C n/a, JavaScript Objects etc) to assist the developer in setting up these structured data carriers. These structures does **not** have to store the data exactly as the KVS string is structured. Storing multiple flat structures inside KVS classes can also be considered. It is of utmost importance, that the native structures used must preserve the order of the key-value pairs as they were inserted initially, or the same order as they were found inside the KVS string. After a structure has been set up, the implementation needs a function to serialise the entire structure to this KVS syntax. Another function is also needed to take the serialised KVS syntax string and turn it back into native structured data that can be accessed and manipulated using the given language.
 
