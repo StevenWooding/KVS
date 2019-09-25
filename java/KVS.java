@@ -1,4 +1,4 @@
-package slite.lib.java;
+package stevenwooding;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
