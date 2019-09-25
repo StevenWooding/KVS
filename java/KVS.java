@@ -413,6 +413,19 @@ public class KVS
 	{
 		return this.getShort((short)0, keys);
 	}
+	
+	/**
+	 * This method checks if the specified value exists or not. If it does exist it
+	 * would be returned. If not then the defaultValue is returned
+	 * @param defaultValue
+	 * @param keys
+	 * @return 
+	 */
+	public String getString(String defaultValue, String... keys)
+	{
+		if(this.exists(keys)) return this.get(keys);
+		return defaultValue;
+	}
 
 	/**
 	 * This method internally calls the get(String... keyPath) method, but additionally
@@ -785,10 +798,11 @@ public class KVS
 	 * This makes it very easy to use the KVS as an array and not a map.
 	 * @param value 
 	 */
-	public void add(Object value)
+	public KVS add(Object value)
 	{
 		this.set(value, this.autoKey+"");
 		this.autoKey++;
+		return this;
 	}
 	
 	/**
@@ -991,7 +1005,12 @@ public class KVS
 		
 		//*
 
-		KVS kvs = new KVS(fis, 4);
+		KVS kvs = new KVS(fis, -1);
+
+		kvs.set(32,"age");
+		kvs.set("diesel","car","0","fuel");
+		kvs.set("petrol","car","1","fuel");
+
 //		System.out.println(kvs);
 		time2 = System.currentTimeMillis();
 		System.out.println("Decode Pretty: "+(time2-time)+" ms");
