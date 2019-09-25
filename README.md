@@ -50,11 +50,6 @@ Also note that whitespace (space, tab, \n or \r) is allowed before and after the
 ```
 name =Peter;
 surname =Woods;
-bio =I am a very sophisticated person that loves to hike, swim, and ride bike in the forests. My favourite  lines of code is:
-	for(int i=0;;i<10;;i++)
-	{
-		System.out.println("Hello World!");;
-	};
 car
 [
 	[
@@ -95,4 +90,18 @@ pets
 		weight=2kg;
 	]
 ]
+bio =I am a very sophisticated person that loves to hike, swim, and ride bike in the forests. My favourite lines of code is:
+	for(int i=0;;i<10;;i++)
+	{
+		System.out.println("Hello World!");;
+	};
+```
+## Fast and Lightweight
+The Pretty example above takes a lot of unneeded space, and also requires more processing power to parse because of a lot of wasted time spent by the CPU reading whitespace characters. Thus for production use where a lot of KVS strings are parsed and produced the below example is suggested. This contains exactly the same data as the Pretty version:
+```
+name=Peter;surname=Woods;car[[make=BMW;model=X3;engine[capacity=2000;cylinders=6;configuration=straight;]][make=VW;model=Polo;engine[capacity=1200;cylinders=4;configuration=straight;]]]pets[[name=fluffy;type=cat;breed=housecat;size=small;weight=2kg;][name=skittles;type=cat;breed=housecat;sute=small;weight=2kg;]]bio=I am a very sophisticated person that loves to hike, swim, and ride bike in the forests. My favourite  lines of code is:
+	for(int i=0;;i<10;;i++)
+	{
+		System.out.println("Hello World!");;
+	};
 ```
