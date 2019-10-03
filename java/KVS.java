@@ -349,6 +349,42 @@ public class KVS
 	{
 		buffer.append("="+value.replace(";", ";;")+";" + (indent == null ? "" : "\n"));
 	}
+	
+	private final static String KEY_COLOUR = "\033[0;36m";
+	private final static String KEY_COLOUR2 = "\033[0;97m";
+	private final static String VALUE_COLOUR = "\033[0;35m";
+	private final static String NO_COLOUR = "\033[0m";
+	
+	/**
+	 * "Colourises" and pretty prints this KVS for improved readability in the terminal / console.
+	 * @param wrap
+	 * @return 
+	 */
+	public String toStringColourful(String wrap) { return toStringColourful(this, 0, wrap); }
+	private String tabs(int t) {
+		String result = "" ;
+		for (int i=0; i< t; i++) result += "\t";
+		return result;
+	}
+	private String colourise(String text, String colour) { return colour + text + NO_COLOUR; }
+	private String toStringColourful(KVS kvs, int depth, String wrap) {
+		if (wrap != null) depth+=1;
+		String indent = tabs(depth);
+		String result = (wrap == null ? "" : colourise(wrap, KEY_COLOUR) + "[\n") ;
+		int count = 0;
+		for (Map.Entry<String, Object> entry : kvs.entries()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+			if (key.equals(count + "")) key = "" ;
+			if (value instanceof String) result += indent + colourise(key, KEY_COLOUR2) + "=" + colourise(value.toString(), VALUE_COLOUR) + ";";
+			else result += indent + colourise(key, KEY_COLOUR) + "\n" + 
+							indent + "[\n" + 
+									toStringColourful((KVS) value, depth+1, null) + "\n" + 
+							indent + "]";
+			if (count++ < kvs.size()-1) result += "\n";
+		}
+		return (wrap==null ? result : result + "\n]");
+	}
 
 	/**
 	 * This method internally calls the get(String... keyPath) method, but additionally
