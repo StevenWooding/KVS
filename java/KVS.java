@@ -73,12 +73,15 @@ public class KVS
 	 */
 	public void fromString(String text)
 	{
-		ByteArrayInputStream bais = new ByteArrayInputStream(text.getBytes());
-		
-		KVSBufferIn buffer = new KVSBufferIn(bais);
-		this.fromBuffer(buffer, -1);
-		
-		try { bais.close(); } catch (IOException ex) {}
+		if(text!=null)
+		{
+			ByteArrayInputStream bais = new ByteArrayInputStream(text.getBytes());
+
+			KVSBufferIn buffer = new KVSBufferIn(bais);
+			this.fromBuffer(buffer, -1);
+
+			try { bais.close(); } catch (IOException ex) {}
+		}
 	}
 	
 	/**
